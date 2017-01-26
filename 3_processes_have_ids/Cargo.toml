@@ -1,0 +1,7 @@
+[package]
+name = "3_processes_have_ids"
+version = "0.1.0"
+authors = ["hhatto <hhatto.jp@gmail.com>"]
+
+[dependencies]
+nix = "0.7"
