@@ -6,7 +6,7 @@ use nix::unistd;
 
 
 fn main() {
-    let pid = unistd::getppid();
+    let pid = unistd::getpid();
     let ppid = unistd::getppid();
     println!("this process's PID is {}", pid);
     println!("this process's parent PID is {}", ppid);
