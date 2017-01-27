@@ -1,5 +1,5 @@
 [root]
-name = "3_processes_have_ids"
+name = "wwup"
 version = "0.1.0"
 dependencies = [
  "nix 0.7.0 (registry+https://github.com/rust-lang/crates.io-index)",

@@ -1,0 +1,15 @@
+[package]
+name = "wwup"
+version = "0.1.0"
+authors = ["hhatto <hhatto.jp@gmail.com>"]
+
+[dependencies]
+nix = "0.7"
+
+[[bin]]
+name = "3_processes_have_ids"
+path = "src/3_processes_have_ids.rs"
+
+[[bin]]
+name = "4_processes_have_parents"
+path = "src/4_processes_have_parents.rs"
