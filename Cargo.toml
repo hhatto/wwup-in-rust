@@ -5,6 +5,7 @@ authors = ["hhatto <hhatto.jp@gmail.com>"]
 
 [dependencies]
 nix = "0.7"
+libc = "*"
 
 [[bin]]
 name = "3_processes_have_ids"
@@ -13,3 +14,7 @@ path = "src/3_processes_have_ids.rs"
 [[bin]]
 name = "4_processes_have_parents"
 path = "src/4_processes_have_parents.rs"
+
+[[bin]]
+name = "5_processes_have_file_descriptors"
+path = "src/5_processes_have_file_descriptors.rs"
