@@ -10,5 +10,5 @@ fn main() {
     let ppid = unistd::getppid();
     println!("this process's PID is {}", pid);
     println!("this process's parent PID is {}", ppid);
-    thread::sleep(Duration::from_millis(100_000));
+    thread::sleep(Duration::from_millis(10_000));
 }
