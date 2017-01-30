@@ -18,3 +18,7 @@ path = "src/4_processes_have_parents.rs"
 [[bin]]
 name = "5_processes_have_file_descriptors"
 path = "src/5_processes_have_file_descriptors.rs"
+
+[[bin]]
+name = "6_processes_have_resource_limits"
+path = "src/6_processes_have_resource_limits.rs"
