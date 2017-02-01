@@ -26,3 +26,7 @@ path = "src/6_processes_have_resource_limits.rs"
 [[bin]]
 name = "7_processes_have_an_environment"
 path = "src/7_processes_have_an_environment.rs"
+
+[[bin]]
+name = "8_processes_have_arguments"
+path = "src/8_processes_have_arguments.rs"
