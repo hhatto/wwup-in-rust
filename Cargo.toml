@@ -6,6 +6,7 @@ authors = ["hhatto <hhatto.jp@gmail.com>"]
 [dependencies]
 nix = "0.7"
 libc = "*"
+prctl = "1.0"
 
 [[bin]]
 name = "3_processes_have_ids"
@@ -30,3 +31,7 @@ path = "src/7_processes_have_an_environment.rs"
 [[bin]]
 name = "8_processes_have_arguments"
 path = "src/8_processes_have_arguments.rs"
+
+[[bin]]
+name = "9_processes_have_names"
+path = "src/9_processes_have_names.rs"
