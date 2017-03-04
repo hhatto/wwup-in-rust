@@ -35,3 +35,7 @@ path = "src/8_processes_have_arguments.rs"
 [[bin]]
 name = "9_processes_have_names"
 path = "src/9_processes_have_names.rs"
+
+[[bin]]
+name = "10_processes_have_exit_code"
+path = "src/10_processes_have_exit_code.rs"
