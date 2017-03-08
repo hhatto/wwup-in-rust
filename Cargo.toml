@@ -39,3 +39,7 @@ path = "src/9_processes_have_names.rs"
 [[bin]]
 name = "10_processes_have_exit_code"
 path = "src/10_processes_have_exit_code.rs"
+
+[[bin]]
+name = "11_processes_can_fork"
+path = "src/11_processes_can_fork.rs"
