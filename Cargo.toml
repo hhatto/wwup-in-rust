@@ -47,3 +47,7 @@ path = "src/11_processes_can_fork.rs"
 [[bin]]
 name = "12_orphaned_processes"
 path = "src/12_orphaned_processes.rs"
+
+[[bin]]
+name = "14_processes_can_wait"
+path = "src/14_processes_can_wait.rs"
