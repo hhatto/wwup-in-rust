@@ -51,3 +51,7 @@ path = "src/12_orphaned_processes.rs"
 [[bin]]
 name = "14_processes_can_wait"
 path = "src/14_processes_can_wait.rs"
+
+[[bin]]
+name = "15_zombie_processes"
+path = "src/15_zombie_processes.rs"
