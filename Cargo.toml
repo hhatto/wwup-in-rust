@@ -7,6 +7,8 @@ authors = ["hhatto <hhatto.jp@gmail.com>"]
 nix = "0.7"
 libc = "*"
 prctl = "1.0"
+chan = "*"
+chan-signal = "*"
 
 [[bin]]
 name = "3_processes_have_ids"
@@ -55,3 +57,7 @@ path = "src/14_processes_can_wait.rs"
 [[bin]]
 name = "15_zombie_processes"
 path = "src/15_zombie_processes.rs"
+
+[[bin]]
+name = "16_processes_can_get_signals"
+path = "src/16_processes_can_get_signals.rs"
