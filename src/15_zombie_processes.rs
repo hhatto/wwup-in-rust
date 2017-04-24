@@ -1,8 +1,6 @@
 extern crate nix;
 
-use std::process;
 use nix::unistd;
-//use nix::sys::wait;
 
 fn main() {
     let message = "Good Morning";
@@ -11,7 +9,7 @@ fn main() {
     println!("pid={}", pid);
 
     match unistd::fork().expect("fork() error") {
-        unistd::ForkResult::Parent{ child } => {
+        unistd::ForkResult::Parent { child } => {
             println!("child={}, {}, {}", child, message, recipient);
             for _ in 0..10 {
                 unistd::sleep(1);
