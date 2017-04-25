@@ -11,14 +11,12 @@ use nix::unistd;
 use nix::sys::wait;
 use nix::sys::signal::{kill, sigaction, SigAction, SigHandler, SIGINT, SIGCHLD, SA_RESETHAND, SigSet};
 
-extern fn handle_sigint(i: i32) {
+extern "C" fn handle_sigint(i: i32) {
     println!("handler. i={}", i);
 }
 
 fn main() {
-    let sa = SigAction::new(SigHandler::Handler(handle_sigint),
-                                          SA_RESETHAND,
-                                          SigSet::empty());
+    let sa = SigAction::new(SigHandler::Handler(handle_sigint), SA_RESETHAND, SigSet::empty());
     unsafe { sigaction(SIGCHLD, &sa) }.unwrap();
 
     let pid = unistd::getpid();
@@ -31,7 +29,7 @@ fn main() {
 
     for _ in 0..child_processes {
         match unistd::fork().expect("fork() error") {
-            unistd::ForkResult::Parent{ child } => {
+            unistd::ForkResult::Parent { child } => {
                 println!("fork prent proc. child={}", child);
             }
             unistd::ForkResult::Child => {
@@ -51,11 +49,11 @@ fn main() {
             Ok(wait::WaitStatus::Exited(pid_t, _)) => {
                 println!("exit={}", pid_t);
                 dead_processes += 1;
-            },
+            }
             Ok(_) => {
                 println!("other status.");
                 thread::sleep(Duration::from_millis(200));
-            },
+            }
             Err(e) => {
                 println!("{:?}", e);
                 break;

@@ -7,5 +7,5 @@ extern "C" fn _atexit() {
 
 fn main() {
     process::exit(22);
-    //process::abort();
+    // process::abort();
 }

@@ -12,8 +12,7 @@ fn _main() {
 }
 
 #[cfg(not(target_os="linux"))]
-fn _main() {
-}
+fn _main() {}
 
 fn main() {
     _main();

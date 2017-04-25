@@ -11,7 +11,7 @@ fn main() {
     println!("pid={}", pid);
 
     match unistd::fork().expect("fork() error") {
-        unistd::ForkResult::Parent{ child } => {
+        unistd::ForkResult::Parent { child } => {
             println!("child={}, {}, {}", child, message, recipient);
 
             //match wait::wait().expect("wait() error") {
