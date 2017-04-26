@@ -61,3 +61,7 @@ path = "src/15_zombie_processes.rs"
 [[bin]]
 name = "16_processes_can_get_signals"
 path = "src/16_processes_can_get_signals.rs"
+
+[[bin]]
+name = "17_processes_can_communicate"
+path = "src/17_processes_can_communicate.rs"
