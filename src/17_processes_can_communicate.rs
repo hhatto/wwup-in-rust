@@ -40,8 +40,8 @@ fn example_unix_socket_pair() {
     drop(child_sock);
 
     match parent_sock.write_all(b"hoge\n") {
-        Ok(_) => {},
-        Err(e) => println!("write_all() error. e={:?}", e)
+        Ok(_) => {}
+        Err(e) => println!("write_all() error. e={:?}", e),
     }
 
     let rr = parent_sock.try_clone().expect("");
@@ -56,7 +56,7 @@ fn example_unix_socket_pair() {
         }
         match line_writer.write_all(b"hello\n") {
             Ok(_) => {}
-            Err(e) => println!("error. e={:?}", e)
+            Err(e) => println!("error. e={:?}", e),
         }
         print!("msg={}", line);
     }
@@ -76,7 +76,7 @@ fn example_pipe() {
             drop(r);
             for i in 0..5 {
                 // error occured when write to reader
-                //match r.write_all(format!("child-proc. seq:{}\n", i).as_bytes()) {
+                // match r.write_all(format!("child-proc. seq:{}\n", i).as_bytes()) {
                 match w.write_all(format!("child-proc. seq:{} with unix pipe\n", i).as_bytes()) {
                     Ok(_) => {}
                     Err(e) => println!("write_all() error. e={:?}", e),
