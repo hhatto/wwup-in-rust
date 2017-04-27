@@ -8,13 +8,7 @@ use std::os::unix::net::UnixStream;
 use nix::unistd;
 
 fn example_unix_socket_pair() {
-    let (rsock, mut wsock) = match UnixStream::pair() {
-        Ok((rsock, wsock)) => (rsock, wsock),
-        Err(e) => {
-            println!("Couldn't create a pair of sockets: {:?}", e);
-            return
-        }
-    };
+    let (mut child_sock, mut parent_sock) = UnixStream::pair().expect("pair() error");
 
     match unistd::fork().expect("fork() error") {
         unistd::ForkResult::Parent { child } => {
@@ -23,9 +17,17 @@ fn example_unix_socket_pair() {
         unistd::ForkResult::Child => {
             let child_pid = unistd::getpid();
             println!("I'm an orphan! {}", child_pid);
-            drop(rsock);
+
+            drop(parent_sock);
+
+            let rr = child_sock.try_clone().expect("");
+            let mut line_reader = BufReader::new(rr);
+            let mut line = String::new();
+            let len = line_reader.read_line(&mut line).expect("read_line() error");
+            print!("len={}, parent -> child msg={}", len, line);
+
             for i in 0..5 {
-                match wsock.write_all(format!("child-proc. seq:{} with unix socket\n", i).as_bytes()) {
+                match child_sock.write_all(format!("child-proc. seq:{} with unix socket\n", i).as_bytes()) {
                     Ok(_) => {}
                     Err(e) => println!("write_all() error. e={:?}", e),
                 }
@@ -34,13 +36,27 @@ fn example_unix_socket_pair() {
             ::std::process::exit(0);
         }
     }
-    drop(wsock);
-    let mut line_reader = BufReader::new(rsock);
+
+    drop(child_sock);
+
+    match parent_sock.write_all(b"hoge\n") {
+        Ok(_) => {},
+        Err(e) => println!("write_all() error. e={:?}", e)
+    }
+
+    let rr = parent_sock.try_clone().expect("");
+    let mut line_reader = BufReader::new(rr);
+    let rrr = parent_sock.try_clone().expect("");
+    let mut line_writer = ::std::io::BufWriter::new(rrr);
     loop {
         let mut line = String::new();
         let len = line_reader.read_line(&mut line).expect("read_line() error");
         if len <= 0 {
             break;
+        }
+        match line_writer.write_all(b"hello\n") {
+            Ok(_) => {}
+            Err(e) => println!("error. e={:?}", e)
         }
         print!("msg={}", line);
     }
