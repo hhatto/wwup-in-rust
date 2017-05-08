@@ -65,3 +65,7 @@ path = "src/16_processes_can_get_signals.rs"
 [[bin]]
 name = "17_processes_can_communicate"
 path = "src/17_processes_can_communicate.rs"
+
+[[bin]]
+name = "18_daemon_processes"
+path = "src/18_daemon_processes.rs"
