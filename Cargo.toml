@@ -69,3 +69,7 @@ path = "src/17_processes_can_communicate.rs"
 [[bin]]
 name = "18_daemon_processes"
 path = "src/18_daemon_processes.rs"
+
+[[bin]]
+name = "19_spawning_terminal_processes"
+path = "src/19_spawning_terminal_processes.rs"
