@@ -1,10 +1,8 @@
-extern crate nix;
-
 use std::fs::File;
 use std::os::unix::io::AsRawFd;
 use std::process;
 use nix::unistd;
-use nix::sys::ioctl::libc::{getpgrp, setsid, getsid, STDIN_FILENO, STDOUT_FILENO, STDERR_FILENO};
+use libc::{getpgrp, setsid, getsid, STDIN_FILENO, STDOUT_FILENO, STDERR_FILENO};
 
 fn daemonize() {
     let pgrpid = unsafe { getpgrp() };
@@ -12,7 +10,7 @@ fn daemonize() {
     let pid = unistd::getpid();
     println!("pgrp={}, sid={}, pid={}", pgrpid, sid, pid);
 
-    match unistd::fork().expect("fork() error") {
+    match unsafe{unistd::fork().expect("fork() error")} {
         unistd::ForkResult::Parent { child } => {
             let pgrpid = unsafe { getpgrp() };
             let sid = unsafe { getsid(0) };
@@ -31,7 +29,7 @@ fn daemonize() {
     println!("setsid... pgrp={}, newsid={}, newgetsid={}, sid={}, pid={}",
              pgrpid, newsid, newgetsid, sid, pid);
 
-    match unistd::fork().expect("fork() error") {
+    match unsafe{unistd::fork().expect("fork() error")} {
         unistd::ForkResult::Child => {
             let child_pid = unistd::getpid();
             println!("I'm an child! {}", child_pid);

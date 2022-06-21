@@ -10,7 +10,7 @@ use nix::unistd;
 fn example_unix_socket_pair() {
     let (mut child_sock, mut parent_sock) = UnixStream::pair().expect("pair() error");
 
-    match unistd::fork().expect("fork() error") {
+    match unsafe{unistd::fork().expect("fork() error")} {
         unistd::ForkResult::Parent { child } => {
             println!("child={}", child);
         }
@@ -66,7 +66,7 @@ fn example_pipe() {
     let (reader, writer) = nix::unistd::pipe().expect("pipe() error");
     let r = unsafe { File::from_raw_fd(reader) };
     let mut w = unsafe { File::from_raw_fd(writer) };
-    match unistd::fork().expect("fork() error") {
+    match unsafe{unistd::fork().expect("fork() error")} {
         unistd::ForkResult::Parent { child } => {
             println!("child={}", child);
         }

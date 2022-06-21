@@ -7,8 +7,8 @@ fn main() {
     let pid = unistd::getpid();
     println!("pid={}", pid);
 
-    match unistd::fork().expect("fork() error") {
-        unistd::ForkResult::Parent { child } => {
+    match unsafe{unistd::fork().expect("fork() error")} {
+        unistd::ForkResult::Parent { .. } => {
             process::exit(0);
         }
         unistd::ForkResult::Child => {

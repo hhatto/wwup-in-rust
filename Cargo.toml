@@ -2,9 +2,10 @@
 name = "wwup"
 version = "0.1.0"
 authors = ["hhatto <hhatto.jp@gmail.com>"]
+edition = "2021"
 
 [dependencies]
-nix = "0.7"
+nix = "0.24.1"
 libc = "*"
 prctl = "1.0"
 chan = "*"

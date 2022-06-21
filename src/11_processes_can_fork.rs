@@ -6,7 +6,7 @@ fn main() {
     let pid = unistd::getpid();
     println!("pid={}", pid);
 
-    match unistd::fork().expect("fork() error") {
+    match unsafe{unistd::fork().expect("fork() error")} {
         unistd::ForkResult::Parent { child } => {
             let pid = unistd::getpid();
             println!("parent. child={}, pid={}", child, pid);

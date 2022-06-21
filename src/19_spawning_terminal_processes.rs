@@ -1,5 +1,3 @@
-extern crate libc;
-
 use std::process::Command;
 use std::ffi::CString;
 
@@ -15,9 +13,10 @@ fn process_spawn() {
 
 fn libc_popen() {
     let msg = CString::new("some\ndata").unwrap();
+    let command = CString::new("less").unwrap();
+    let args = CString::new("w").unwrap();
     unsafe {
-        let file = libc::popen(CString::new("less").unwrap().as_ptr(),
-                    CString::new("w").unwrap().as_ptr());
+        let file = libc::popen(command.as_ptr(), args.as_ptr());
         libc::fwrite(msg.as_ptr() as *const libc::c_void, 1, msg.to_bytes().len(), file);
         libc::pclose(file);     // exec less -> input q -> process end
     };

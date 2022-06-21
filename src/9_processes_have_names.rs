@@ -1,5 +1,3 @@
-extern crate prctl;
-
 #[cfg(target_os="linux")]
 use std::thread;
 #[cfg(target_os="linux")]
